@@ -57,11 +57,22 @@ Each PR should:
 - Target one clear scope (feature/fix/chore).
 - Include a short "why" and a test plan.
 - Pass local checks before submission.
+- Include Figma source context for UI changes:
+  - Figma frame URL
+  - design version/date
+  - list of affected sections/components
+  - UI acceptance criteria
 
 Required local command before PR:
 
 ```bash
 make ci
+```
+
+For full pre-PR gate:
+
+```bash
+make prepr
 ```
 
 If your change affects Docker/bootstrap flow, also run:
@@ -80,6 +91,27 @@ Why:
 - Makes rollback easier (one commit per PR).
 
 Use `Rebase and merge` only when preserving multiple commits in `main` is intentional and reviewed.
+
+## Figma-to-Code Contract
+
+For any visual feature, PR must include:
+
+1. `Figma Frame URL`
+2. `Design Version` (date or tag)
+3. `Target Components` (e.g. `HeroSection`, `ProjectsGrid`)
+4. `Acceptance Criteria` (responsive states, spacing, typography, interactions)
+5. `Design Sign-off` (approved / pending)
+
+## UI Structure Conventions (Figma-aligned)
+
+Use this frontend structure for UI work:
+
+- `frontend/src/components/section/*` for page-level sections (`HeroSection`, `ProjectsSection`)
+- `frontend/src/components/ui/*` for reusable primitives (`TagChip`, `SectionCard`)
+- `frontend/src/pages/*` for route-level composition
+- `frontend/src/styles/tokens.css` for shared design tokens
+
+Component naming should match Figma semantics when possible (`HeroSection`, `SkillsSection`, `ExperienceCard`).
 
 ## Branch Cleanup
 

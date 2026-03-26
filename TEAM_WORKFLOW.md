@@ -28,12 +28,25 @@ Optional: recreate demo content:
 make seed-demo
 ```
 
+For UI tasks from Figma, follow MCP-first checklist:
+
+- Use Figma frame URL as source of truth
+- Generate section draft with MCP
+- Run cleanup -> data wiring -> QA pass
+- See `docs/figma-mcp-playbook.md`
+
 ## 3) Before Opening PR
 
 Run local checks:
 
 ```bash
 make ci
+```
+
+For full gate (including artifact policy checks):
+
+```bash
+make prepr
 ```
 
 Rebase branch on latest `main`:
@@ -52,6 +65,12 @@ git push -u origin <branch-name>
 ## 4) Pull Request
 
 - Fill PR template sections: `Summary`, `Why`, `Test Plan`, `Checklist`.
+- For UI tasks, add:
+  - `Figma Frame URL`
+  - design version/date
+  - screenshots before/after
+  - responsive validation (mobile/tablet/desktop)
+  - design sign-off status
 - Ensure CI is green.
 - Keep PR scope focused (one feature/fix/chore per PR).
 

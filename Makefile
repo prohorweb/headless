@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup up init seed-demo bootstrap down restart logs ps status clean backup restore frontend-build check smoke ci
+.PHONY: setup up init seed-demo bootstrap down restart logs ps status clean backup restore frontend-lint frontend-build check smoke ci forbidden-artifacts prepr
 
 setup:
 	@test -f .env || cp .env.example .env
@@ -44,6 +44,9 @@ restore:
 	fi
 	bash scripts/restore-db.sh "$(FILE)"
 
+frontend-lint:
+	npm --prefix frontend run lint
+
 frontend-build:
 	npm --prefix frontend run build
 
@@ -56,3 +59,17 @@ smoke:
 
 ci: frontend-build check smoke
 	@echo "CI checks passed."
+
+forbidden-artifacts:
+	@if git ls-files --error-unmatch .env >/dev/null 2>&1; then \
+		echo "ERROR: .env must not be tracked"; \
+		exit 1; \
+	fi
+	@if [ -n "$$(git ls-files frontend/dist)" ]; then \
+		echo "ERROR: frontend/dist must not be tracked"; \
+		exit 1; \
+	fi
+	@echo "Forbidden artifacts check passed."
+
+prepr: frontend-lint ci forbidden-artifacts
+	@echo "Pre-PR checks passed."

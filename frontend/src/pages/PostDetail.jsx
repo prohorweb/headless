@@ -1,18 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useQuery, gql } from '@apollo/client'
-
-const GET_POST_BY_SLUG = gql`
-  query GetPostBySlug($slug: String!) {
-    postBy(slug: $slug) {
-      id
-      slug
-      title
-      content
-      date
-    }
-  }
-`
+import { useQuery } from '@apollo/client'
+import { GET_POST_BY_SLUG } from '../lib/graphql/queries'
 
 export default function PostDetail() {
   const { slug } = useParams()

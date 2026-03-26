@@ -97,9 +97,11 @@ query {
 
 - Vite для быстрой разработки и оптимизации
 - Apollo Client для GraphQL запросов
+- ESLint lint-гейт в pre-PR и CI
 - Tailwind CSS для стилей
 - Портфолио-лендинг (светлая тема) + страница статьи
 - Компоненты: Home, PostDetail
+- GraphQL слой: `frontend/src/lib/graphql/queries.js`
 
 ## 🐳 Команды автоматизации (Makefile)
 
@@ -124,6 +126,9 @@ make smoke
 
 # Локальный pre-push CI прогон
 make ci
+
+# Полный pre-PR gate (lint + ci + артефакты)
+make prepr
 
 # Бэкап/восстановление
 make backup
@@ -192,6 +197,7 @@ bash scripts/restore-db.sh backups/wordpress_backup_YYYYMMDD_HHMMSS.tar.gz
 Подробные правила и примеры: `CONTRIBUTING.md`.
 Шаги для настройки защиты `main`: `docs/branch-protection.md`.
 Короткий чеклист для команды: `TEAM_WORKFLOW.md`.
+MCP-first процесс Figma -> код: `docs/figma-mcp-playbook.md`.
 
 ## 📝 Лицензия
 

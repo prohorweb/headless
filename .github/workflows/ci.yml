@@ -23,8 +23,11 @@ jobs:
       - name: Verify Docker Compose
         run: docker compose version
 
+      - name: Frontend lint
+        run: make frontend-lint
+
       - name: Bootstrap stack
         run: make bootstrap
 
-      - name: Run CI checks
-        run: make ci
+      - name: Run pre-PR gate
+        run: make prepr
