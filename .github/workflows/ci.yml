@@ -29,6 +29,9 @@ jobs:
       - name: Frontend lint
         run: make frontend-lint
 
+      - name: Storybook build
+        run: npm --prefix frontend run storybook:build
+
       - name: Bootstrap stack
         run: make bootstrap
 

@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: setup up init seed-demo bootstrap down restart logs ps status clean backup restore frontend-lint frontend-build check smoke ci forbidden-artifacts prepr
+.PHONY: setup up init seed-demo bootstrap down restart logs ps status clean backup restore frontend-lint frontend-build storybook storybook-build check smoke ci forbidden-artifacts prepr
 
 setup:
 	@test -f .env || cp .env.example .env
@@ -49,6 +49,12 @@ frontend-lint:
 
 frontend-build:
 	npm --prefix frontend run build
+
+storybook:
+	npm --prefix frontend run storybook
+
+storybook-build:
+	npm --prefix frontend run storybook:build
 
 check:
 	curl -fsS "$${WP_PROTOCOL:-http}://$${WP_DOMAIN:-localhost:$${WORDPRESS_PORT:-8080}}$${GRAPHQL_ENDPOINT:-/graphql}" >/dev/null

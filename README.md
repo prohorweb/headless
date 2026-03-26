@@ -99,9 +99,10 @@ query {
 - Apollo Client для GraphQL запросов
 - ESLint lint-гейт в pre-PR и CI
 - Tailwind CSS для стилей
-- Портфолио-лендинг (светлая тема) + страница статьи
+- Token-driven портфолио-лендинг + страница статьи
 - Компоненты: Home, PostDetail
 - GraphQL слой: `frontend/src/lib/graphql/queries.js`
+- Storybook витрина UI-компонентов
 
 ## 🐳 Команды автоматизации (Makefile)
 
@@ -137,6 +138,10 @@ make restore FILE=backups/wordpress_backup_YYYYMMDD_HHMMSS.tar.gz
 # Логи и остановка
 make logs
 make down
+
+# Storybook (UI витрина)
+npm --prefix frontend run storybook
+npm --prefix frontend run storybook:build
 ```
 
 ## 🛠️ Утилитарные скрипты
@@ -198,6 +203,7 @@ bash scripts/restore-db.sh backups/wordpress_backup_YYYYMMDD_HHMMSS.tar.gz
 Шаги для настройки защиты `main`: `docs/branch-protection.md`.
 Короткий чеклист для команды: `TEAM_WORKFLOW.md`.
 MCP-first процесс Figma -> код: `docs/figma-mcp-playbook.md`.
+Source-of-truth Figma frame: `https://www.figma.com/community/file/1537201033829349468/senior-software-engineer-portfolio-website`.
 
 ## 📝 Лицензия
 

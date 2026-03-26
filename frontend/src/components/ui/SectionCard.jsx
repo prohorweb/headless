@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function SectionCard({ id, className = '', children }) {
-  const classes = `rounded-3xl border border-slate-200 bg-white p-7 md:p-10 ${className}`.trim()
+  const classes = `rounded-[var(--radius-xl)] border border-[color:var(--border-default)] bg-[color:var(--bg-surface)] p-[var(--section-pad-mobile)] shadow-[var(--shadow-card)] md:p-[var(--section-pad-desktop)] ${className}`.trim()
   return (
     <section id={id} className={classes}>
       {children}

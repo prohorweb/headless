@@ -5,17 +5,17 @@ import PostDetail from './pages/PostDetail'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#f6f8fc] text-slate-900">
-      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white/85 backdrop-blur">
+    <div className="min-h-screen bg-[color:var(--bg-page)] text-[color:var(--text-primary)]">
+      <header className="sticky top-0 z-10 border-b border-[color:var(--border-default)] bg-[color:var(--bg-surface)]/85 backdrop-blur">
         <div className="container mx-auto flex items-center justify-between py-4">
-          <Link to="/" className="text-lg font-semibold tracking-tight text-slate-900 md:text-xl">Engineer Portfolio</Link>
+          <Link to="/" className="text-lg font-semibold tracking-tight text-[color:var(--text-primary)] md:text-xl">Engineer Portfolio</Link>
           <div className="flex items-center gap-4">
-            <a href="#contact" className="hidden text-sm text-slate-600 hover:text-slate-900 md:inline">Contact</a>
+            <a href="#contact" className="hidden text-sm text-[color:var(--text-secondary)] transition hover:text-[color:var(--text-primary)] md:inline">Contact</a>
             <a
               href="http://localhost:8080/wp-admin"
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700"
+              className="rounded-[var(--radius-pill)] bg-[color:var(--bg-emphasis)] px-4 py-2 text-sm font-medium text-[color:var(--text-on-emphasis)] transition hover:bg-[color:var(--accent-primary-hover)]"
             >
               Open WP Admin
             </a>
