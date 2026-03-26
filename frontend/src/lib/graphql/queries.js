@@ -19,7 +19,6 @@ export const GET_HOME_CONTENT = gql`
     generalSettings {
       title
       description
-      email
       url
     }
     categories(first: 8) {
