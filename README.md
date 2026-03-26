@@ -183,6 +183,19 @@ bash scripts/update-wp-domain.sh <new_domain>
 - Регулярно делайте резервные копии базы данных
 - Обновляйте WordPress и плагины регулярно
 
+## 🔀 Git Workflow
+
+Рекомендуемый процесс работы с Git:
+
+1. Создавайте ветку от свежего `main` (`feat/*`, `fix/*`, `chore/*`).
+2. Перед PR запускайте локальные проверки: `make ci`.
+3. Обновляйте ветку через `git rebase origin/main`.
+4. Делайте merge через `Squash and merge`.
+5. Удаляйте ветку после merge.
+
+Подробные правила и примеры: `CONTRIBUTING.md`.
+Шаги для настройки защиты `main`: `docs/branch-protection.md`.
+
 ## 📝 Лицензия
 
 MIT License
