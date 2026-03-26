@@ -22,10 +22,11 @@ echo "✓ БД экспортирована ($(du -h "$BACKUP_FILE" | cut -f1))"
 
 echo ""
 echo "Создаём архив с БД и wp-content..."
-tar -czf "$BACKUP_ARCHIVE" "$BACKUP_FILE" wp-content/ 2>/dev/null || tar -czf "$BACKUP_ARCHIVE" -C . "$BACKUP_FILE" -C . wp-content/
-echo "✓ Архив создан ($(du -h "$BACKUP_ARCHIVE" | cut -f1))"
+tar -czf "$BACKUP_ARCHIVE" -C . "$BACKUP_FILE" wp-content
+ARCHIVE_SIZE=$(du -h "$BACKUP_ARCHIVE" | cut -f1)
+echo "✓ Архив создан ($ARCHIVE_SIZE)"
 
-# Опционально: удалить отдельный SQL файл если архив готов
+# Удаляем отдельный SQL файл после успешного создания архива
 rm -f "$BACKUP_FILE"
 
 echo ""

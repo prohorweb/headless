@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
 
 const GET_POST_BY_SLUG = gql`
@@ -9,6 +9,7 @@ const GET_POST_BY_SLUG = gql`
       slug
       title
       content
+      date
     }
   }
 `
@@ -17,21 +18,22 @@ export default function PostDetail() {
   const { slug } = useParams()
   const { data, loading, error } = useQuery(GET_POST_BY_SLUG, { variables: { slug } })
 
-  useEffect(() => {
-    if (data) console.debug('PostDetail: GraphQL data', data)
-  }, [data])
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
+  if (loading) return <p className="text-sm text-slate-500">Loading post...</p>
+  if (error) return <p className="text-sm text-red-600">Error: {error.message}</p>
 
   const post = data?.postBy
-  if (!post) return <p>Post not found</p>
+  if (!post) return <p className="text-sm text-slate-500">Post not found.</p>
 
   return (
-    <article>
-      <div className="text-sm text-gray-500 mb-2">id: {post.id} — slug: {post.slug}</div>
-      <h1 className="text-3xl font-bold mb-4">{post.title || post.slug}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+    <article className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-200">
+      <Link to="/" className="text-sm font-medium text-indigo-600 hover:underline">
+        &larr; Back to posts
+      </Link>
+      <p className="mt-4 text-xs uppercase tracking-wider text-slate-500">
+        {post.date ? new Date(post.date).toLocaleDateString() : 'No date'} - {post.slug}
+      </p>
+      <h1 className="mt-2 text-4xl font-bold leading-tight text-slate-900">{post.title || post.slug}</h1>
+      <div className="post-content mt-8 space-y-5 leading-8 text-slate-700" dangerouslySetInnerHTML={{ __html: post.content }} />
     </article>
   )
 }

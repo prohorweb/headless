@@ -2,26 +2,43 @@ services:
   db:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wp
-      MYSQL_PASSWORD: wp
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-example}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-wordpress}
+      MYSQL_USER: ${MYSQL_USER:-wp}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-wp}
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   wordpress:
-    image: wordpress:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wp
-      WORDPRESS_DB_PASSWORD: wp
-      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: ${MYSQL_USER:-wp}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-wp}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-wordpress}
+      WORDPRESS_TABLE_PREFIX: wp_
     ports:
-      - "8080:80"
+      - "${WORDPRESS_PORT:-8080}:80"
+    # Исправленная команда: используем mysqladmin вместо /dev/tcp
+    command: sh -c "until mysqladmin ping -h db -u\${MYSQL_USER:-wp} -p\${MYSQL_PASSWORD:-wp} --silent; do echo 'Waiting for MariaDB to be ready...'; sleep 2; done; exec docker-entrypoint.sh apache2-foreground"
+  frontend:
+    image: node:20-alpine
+    working_dir: /app/frontend
     volumes:
-      - ./wp-content:/var/www/html/wp-content
+      - ./frontend:/app/frontend
+    ports:
+      - "${FRONTEND_PORT:-5173}:3000"
+    command: sh -c "npm install --no-frozen-lockfile 2>/dev/null || npm install && npx vite --host 0.0.0.0 --port 3000"
 
 volumes:
   db_data:
