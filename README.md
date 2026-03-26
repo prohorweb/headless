@@ -24,7 +24,7 @@ make bootstrap
 
 После запуска:
 - **WordPress GraphQL API**: `http://localhost:8080/graphql`
-- **React Frontend**: `http://localhost:5173`
+- **React Frontend**: `http://localhost:${FRONTEND_PORT}` (по умолчанию `5173`)
 - **WordPress Admin**: `http://localhost:8080/wp-admin`
 
 ### 3. Локальное тестирование без Docker
@@ -97,6 +97,7 @@ query {
 - Vite для быстрой разработки и оптимизации
 - Apollo Client для GraphQL запросов
 - Tailwind CSS для стилей
+- Портфолио-лендинг (светлая тема) + страница статьи
 - Компоненты: Home, PostDetail
 
 ## 🐳 Команды автоматизации (Makefile)
@@ -110,6 +111,9 @@ make up
 
 # Повторно инициализировать WP + GraphQL
 make init
+
+# Принудительно пересоздать демо-контент блога
+make seed-demo
 
 # Проверить GraphQL endpoint
 make check
