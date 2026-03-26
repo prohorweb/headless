@@ -26,7 +26,7 @@ tar -xzf "$ARCHIVE"
 echo "✓ Архив распакован"
 
 # Находим SQL файл в распакованных файлах
-SQL_FILE=$(find . -maxdepth 2 -name "wordpress_backup_*.sql" 2>/dev/null | head -1)
+SQL_FILE=$(find . -maxdepth 2 -name "*.sql" 2>/dev/null | head -1)
 
 if [ -z "$SQL_FILE" ]; then
   echo "❌ Ошибка: SQL файл не найден в архиве"
