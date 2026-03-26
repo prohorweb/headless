@@ -50,12 +50,13 @@ headless/
 │   │   └── styles/            # CSS стили
 │   └── index.html
 ├── scripts/                    # Утилитарные скрипты
-│   ├── install-wp-graphql.sh  # Установка GraphQL плагинов
-│   ├── check-and-fix-graphql.sh
+│   ├── bootstrap.sh            # Полная инициализация окружения
+│   ├── init-wordpress.sh       # Инициализация WordPress + GraphQL
+│   ├── seed-blog.sh            # Демо-контент
+│   ├── smoke-test.sh           # Smoke-проверка frontend + GraphQL
 │   ├── backup-db.sh           # Резервное копирование БД
 │   ├── restore-db.sh          # Восстановление БД
-│   └── update-wp-domain.sh    # Обновление домена WordPress
-└── wp-content/                 # WP контент (темы, плагины)
+└── Makefile                    # One-command команды проекта
 ```
 
 ## 🔧 Конфигурация (.env)
@@ -135,14 +136,14 @@ make down
 
 ## 🛠️ Утилитарные скрипты
 
-### Установка GraphQL плагинов
+### Полный bootstrap
 ```bash
-bash scripts/install-wp-graphql.sh
+bash scripts/bootstrap.sh
 ```
 
-### Проверка и исправление GraphQL конфигурации
+### Инициализация WordPress + GraphQL
 ```bash
-bash scripts/check-and-fix-graphql.sh
+bash scripts/init-wordpress.sh
 ```
 
 ### Резервное копирование БД
@@ -152,12 +153,7 @@ bash scripts/backup-db.sh
 
 ### Восстановление БД
 ```bash
-bash scripts/restore-db.sh <backup.sql>
-```
-
-### Обновление домена WordPress
-```bash
-bash scripts/update-wp-domain.sh <new_domain>
+bash scripts/restore-db.sh backups/wordpress_backup_YYYYMMDD_HHMMSS.tar.gz
 ```
 
 ## 📊 Архитектура

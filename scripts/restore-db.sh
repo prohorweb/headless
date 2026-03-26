@@ -38,12 +38,12 @@ echo "Импортируем БД из $SQL_FILE..."
 
 # Убеждаемся, что контейнеры запущены
 echo "Проверяем контейнеры..."
-docker-compose up -d db >/dev/null 2>&1
+docker compose up -d db >/dev/null 2>&1
 
 # Ждём, пока БД будет готова
 echo "Ожидаем готовности БД..."
 for i in {1..30}; do
-  if docker-compose exec -T db mysql -u wp -pwp -e "SELECT 1" >/dev/null 2>&1; then
+  if docker compose exec -T db mysql -u wp -pwp -e "SELECT 1" >/dev/null 2>&1; then
     echo "БД готова"
     break
   fi
@@ -51,7 +51,7 @@ for i in {1..30}; do
 done
 
 # Импортируем БД
-docker-compose exec -T db mysql -u wp -pwp wordpress < "$SQL_FILE"
+docker compose exec -T db mysql -u wp -pwp wordpress < "$SQL_FILE"
 echo "✓ БД импортирована"
 
 # Очищаем временный SQL файл
@@ -59,11 +59,7 @@ rm -f "$SQL_FILE"
 
 echo ""
 echo "Запускаем WordPress контейнер..."
-docker-compose up -d wordpress >/dev/null 2>&1
-
-echo ""
-echo "Обновляем WordPress домен..."
-./scripts/update-wp-domain.sh
+docker compose up -d wordpress >/dev/null 2>&1
 
 echo ""
 echo "=========================================="
