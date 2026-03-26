@@ -75,6 +75,12 @@ For full pre-PR gate:
 make prepr
 ```
 
+For UI component changes, also verify stories:
+
+```bash
+npm --prefix frontend run storybook:build
+```
+
 If your change affects Docker/bootstrap flow, also run:
 
 ```bash
@@ -110,6 +116,8 @@ Use this frontend structure for UI work:
 - `frontend/src/components/ui/*` for reusable primitives (`TagChip`, `SectionCard`)
 - `frontend/src/pages/*` for route-level composition
 - `frontend/src/styles/tokens.css` for shared design tokens
+
+If a component in `frontend/src/components/ui/*` changes, update/create its Storybook story.
 
 Component naming should match Figma semantics when possible (`HeroSection`, `SkillsSection`, `ExperienceCard`).
 

@@ -14,6 +14,32 @@ export const GET_POSTS = gql`
   }
 `
 
+export const GET_HOME_CONTENT = gql`
+  query GetHomeContent {
+    generalSettings {
+      title
+      description
+      email
+      url
+    }
+    categories(first: 8) {
+      nodes {
+        id
+        name
+      }
+    }
+    posts(first: 12) {
+      nodes {
+        id
+        slug
+        title
+        date
+        excerpt
+      }
+    }
+  }
+`
+
 export const GET_POST_BY_SLUG = gql`
   query GetPostBySlug($slug: String!) {
     postBy(slug: $slug) {

@@ -9,12 +9,12 @@ html, body, #root {
 }
 
 .container {
-  max-width: 1080px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 1rem;
+  padding: var(--space-4);
 }
 
-.link { color: #0366d6; }
+.link { color: var(--accent-primary); }
 
 .post-content p {
   margin: 0.9rem 0;

@@ -1,6 +1,6 @@
 node_modules/
 frontend/node_modules/
 frontend/dist/
-wp-content/
+frontend/storybook-static/
 db_data/
 .env

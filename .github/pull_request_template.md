@@ -19,6 +19,7 @@
 - [ ] Typography/spacing/tokens aligned
 - [ ] States verified (`Hover`, `Active`, `Loading`, `Empty`)
 - [ ] Accessibility quick pass (contrast, focus, alt/labels)
+- [ ] Storybook stories added/updated for changed UI primitives
 - [ ] Design Sign-off: `@designer_username` approved
 
 ## Test Plan

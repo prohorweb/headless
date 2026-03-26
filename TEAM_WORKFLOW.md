@@ -30,7 +30,7 @@ make seed-demo
 
 For UI tasks from Figma, follow MCP-first checklist:
 
-- Use Figma frame URL as source of truth
+- Use this Figma frame URL as source of truth: `https://www.figma.com/community/file/1537201033829349468/senior-software-engineer-portfolio-website`
 - Generate section draft with MCP
 - Run cleanup -> data wiring -> QA pass
 - See `docs/figma-mcp-playbook.md`
@@ -47,6 +47,12 @@ For full gate (including artifact policy checks):
 
 ```bash
 make prepr
+```
+
+For UI component tasks, validate Storybook build:
+
+```bash
+npm --prefix frontend run storybook:build
 ```
 
 Rebase branch on latest `main`:

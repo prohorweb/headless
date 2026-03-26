@@ -4,6 +4,16 @@
 
 Use Figma MCP as the primary source for UI implementation while keeping code production-ready and data-aware.
 
+## Source of Truth Frame
+
+- Canonical frame URL: `https://www.figma.com/community/file/1537201033829349468/senior-software-engineer-portfolio-website`
+- Required sections to keep in sync:
+  - `Hero`
+  - `Technical Skills`
+  - `Professional Experience`
+  - `Featured Projects`
+  - `Let's Work Together`
+
 ## MCP-first Flow
 
 1. **Intake**
@@ -32,9 +42,11 @@ Use Figma MCP as the primary source for UI implementation while keeping code pro
    - Responsive check: mobile/tablet/desktop
    - Accessibility quick check: contrast, focus, labels/alt
    - Visual check against Figma frame
+   - Storybook check for changed UI primitives
 
 6. **PR prep**
    - Run `make prepr` (lint + build + smoke + artifact policy)
+   - Run `npm --prefix frontend run storybook:build` for UI primitives changes
    - Attach before/after screenshots
    - Fill design checklist in PR template
 
