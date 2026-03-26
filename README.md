@@ -195,6 +195,7 @@ bash scripts/update-wp-domain.sh <new_domain>
 
 Подробные правила и примеры: `CONTRIBUTING.md`.
 Шаги для настройки защиты `main`: `docs/branch-protection.md`.
+Короткий чеклист для команды: `TEAM_WORKFLOW.md`.
 
 ## 📝 Лицензия
 
