@@ -16,6 +16,10 @@ html, body, #root {
 
 .link { color: var(--accent-primary); }
 
+.link:hover {
+  color: var(--accent-primary-hover);
+}
+
 .post-content p {
   margin: 0.9rem 0;
 }

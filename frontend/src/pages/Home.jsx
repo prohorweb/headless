@@ -11,8 +11,8 @@ import { GET_HOME_CONTENT } from '../lib/graphql/queries'
 export default function Home() {
   const { data, loading, error } = useQuery(GET_HOME_CONTENT)
 
-  if (loading) return <p className="text-sm text-slate-500">Loading posts...</p>
-  if (error) return <p className="text-sm text-red-600">Error: {error.message}</p>
+  if (loading) return <p className="text-sm text-[color:var(--text-muted)]">Loading posts...</p>
+  if (error) return <p className="text-sm text-red-400">Error: {error.message}</p>
 
   const posts = data?.posts?.nodes || []
   const categories = data?.categories?.nodes || []
@@ -29,7 +29,7 @@ export default function Home() {
   ]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       <HeroSection
         name={general.title || 'John Developer'}
         subtitle={general.description || 'Senior Software Engineer crafting reliable products with headless architecture.'}

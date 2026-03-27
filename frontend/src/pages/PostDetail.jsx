@@ -8,7 +8,7 @@ export default function PostDetail() {
   const { data, loading, error } = useQuery(GET_POST_BY_SLUG, { variables: { slug } })
 
   if (loading) return <p className="text-sm text-[color:var(--text-muted)]">Loading post...</p>
-  if (error) return <p className="text-sm text-red-600">Error: {error.message}</p>
+  if (error) return <p className="text-sm text-red-400">Error: {error.message}</p>
 
   const post = data?.postBy
   if (!post) return <p className="text-sm text-[color:var(--text-muted)]">Post not found.</p>

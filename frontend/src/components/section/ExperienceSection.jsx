@@ -11,15 +11,20 @@ const EXPERIENCE_ITEMS = [
 export default function ExperienceSection() {
   return (
     <SectionCard id="experience">
-      <h2 className="text-center text-3xl font-semibold text-[color:var(--text-primary)]">Professional Experience</h2>
-      <div className="mt-6 space-y-4">
+      <h2 className="text-center text-3xl font-medium text-[color:var(--text-primary)] md:text-4xl">Professional Experience</h2>
+      <div className="mx-auto mt-10 max-w-4xl space-y-6">
         {EXPERIENCE_ITEMS.map(([role, company, period, location, text]) => (
-          <article key={role} className="rounded-[var(--radius-md)] border border-[color:var(--border-default)] bg-[color:var(--bg-muted)] p-5">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <h3 className="text-lg font-semibold text-[color:var(--text-primary)]">{role}</h3>
-              <span className="text-xs text-[color:var(--text-muted)]">{period}</span>
+          <article
+            key={role}
+            className="rounded-[var(--radius-md)] border border-[color:var(--border-default)] bg-[color:var(--bg-muted)] p-5"
+          >
+            <div className="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:gap-2">
+              <h3 className="text-lg font-medium text-[color:var(--text-primary)]">{role}</h3>
+              <span className="text-xs text-[color:var(--text-muted)] sm:text-right">{period}</span>
             </div>
-            <p className="mt-1 text-sm text-[color:var(--text-secondary)]">{company} - {location}</p>
+            <p className="mt-1 text-sm text-[color:var(--text-secondary)]">
+              {company} - {location}
+            </p>
             <p className="mt-3 text-sm text-[color:var(--text-secondary)]">{text}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               <TagChip label="React" />
