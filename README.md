@@ -27,6 +27,8 @@ make bootstrap
 - **React Frontend**: `http://localhost:${FRONTEND_PORT}` (по умолчанию `5173`)
 - **WordPress Admin**: `http://localhost:8080/wp-admin`
 
+**Контент для headless-фронта** задаётся в админке: **Site Settings** (ACF — имя сайта, hero, контакты, опыт), **Projects** и **Skill groups** (CPT), **Записи** (блог), **Contact submissions** (входящие с формы; создаются через mutation `submitContact`). Mu-plugin: [`wordpress/mu-plugins/headless-portfolio.php`](wordpress/mu-plugins/headless-portfolio.php). В dev Vite проксирует `/graphql` и `/wp-content` к контейнеру WordPress.
+
 ### 3. Локальное тестирование без Docker
 
 ```bash

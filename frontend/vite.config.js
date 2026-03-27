@@ -6,12 +6,15 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      // proxy /graphql to WordPress to avoid CORS during development
       '/graphql': {
         target: process.env.VITE_GRAPHQL_PROXY_TARGET || 'http://wordpress',
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/graphql/, '/graphql')
+        secure: false
+      },
+      '/wp-content': {
+        target: process.env.VITE_GRAPHQL_PROXY_TARGET || 'http://wordpress',
+        changeOrigin: true,
+        secure: false
       }
     }
   }

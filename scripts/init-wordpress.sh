@@ -43,8 +43,11 @@ else
     --allow-root
 fi
 
-echo "Installing/activating GraphQL plugins..."
+echo "Installing/activating GraphQL + ACF plugins..."
 docker compose exec -T wordpress wp plugin install wp-graphql --activate --allow-root
+docker compose exec -T wordpress wp plugin install advanced-custom-fields --activate --allow-root
+docker compose exec -T wordpress wp plugin install wpgraphql-acf --activate --allow-root 2>/dev/null || \
+  echo "Optional wpgraphql-acf install skipped (custom portfolioSettings field does not require it)."
 docker compose exec -T wordpress wp plugin install wpgraphql-rest-cors --activate --allow-root >/dev/null 2>&1 || true
 
 echo "Updating site URL settings..."
@@ -57,6 +60,9 @@ docker compose exec -T wordpress wp rewrite flush --hard --allow-root || true
 
 echo "Seeding demo blog..."
 bash scripts/seed-blog.sh
+
+echo "Seeding headless portfolio (projects, skill groups, site options)..."
+bash scripts/seed-headless-portfolio.sh
 
 echo "Done."
 echo "WordPress: ${SITE_URL}/wp-admin"
