@@ -1,21 +1,18 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
-import { GET_POST_BY_SLUG } from '../lib/graphql/queries'
+import { STATIC_POSTS_BY_SLUG } from '../data/staticContent'
 
 export default function PostDetail() {
   const { slug } = useParams()
-  const { data, loading, error } = useQuery(GET_POST_BY_SLUG, { variables: { slug } })
+  const post = slug ? STATIC_POSTS_BY_SLUG[slug] : null
 
-  if (loading) return <p className="text-sm text-[color:var(--text-muted)]">Loading post...</p>
-  if (error) return <p className="text-sm text-red-600">Error: {error.message}</p>
-
-  const post = data?.postBy
-  if (!post) return <p className="text-sm text-[color:var(--text-muted)]">Post not found.</p>
+  if (!post) {
+    return <p className="text-sm text-[color:var(--text-muted)]">Post not found.</p>
+  }
 
   return (
-    <article className="rounded-[var(--radius-xl)] bg-[color:var(--bg-surface)] p-8 shadow-[var(--shadow-card)] ring-1 ring-[color:var(--border-default)]">
-      <Link to="/" className="text-sm font-medium text-[color:var(--accent-primary)] hover:underline">
+    <article className="mx-4 my-8 p-8 sm:mx-6 lg:mx-8">
+      <Link to="/blog" className="text-sm font-medium text-[color:var(--accent-primary)] hover:underline">
         &larr; Back to posts
       </Link>
       <p className="mt-4 text-xs uppercase tracking-wider text-[color:var(--text-muted)]">

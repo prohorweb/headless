@@ -1,33 +1,27 @@
 import React from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import Blog from './pages/Blog'
+import Projects from './pages/Projects'
 import PostDetail from './pages/PostDetail'
+import ProjectDetail from './pages/ProjectDetail'
+import HeaderSection from './components/section/HeaderSection'
+import FooterSection from './components/section/FooterSection'
 
 export default function App() {
   return (
     <div className="min-h-screen bg-[color:var(--bg-page)] text-[color:var(--text-primary)]">
-      <header className="sticky top-0 z-10 border-b border-[color:var(--border-default)] bg-[color:var(--bg-surface)]/85 backdrop-blur">
-        <div className="container mx-auto flex items-center justify-between py-4">
-          <Link to="/" className="text-lg font-semibold tracking-tight text-[color:var(--text-primary)] md:text-xl">Engineer Portfolio</Link>
-          <div className="flex items-center gap-4">
-            <a href="#contact" className="hidden text-sm text-[color:var(--text-secondary)] transition hover:text-[color:var(--text-primary)] md:inline">Contact</a>
-            <a
-              href="http://localhost:8080/wp-admin"
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-[var(--radius-pill)] bg-[color:var(--bg-emphasis)] px-4 py-2 text-sm font-medium text-[color:var(--text-on-emphasis)] transition hover:bg-[color:var(--accent-primary-hover)]"
-            >
-              Open WP Admin
-            </a>
-          </div>
-        </div>
-      </header>
-      <main className="container mx-auto py-6">
+      <HeaderSection />
+      <main className="mx-auto max-w-7xl">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/project/:slug" element={<ProjectDetail />} />
           <Route path="/post/:slug" element={<PostDetail />} />
         </Routes>
       </main>
+      <FooterSection />
     </div>
   )
 }
