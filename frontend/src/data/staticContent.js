@@ -1,9 +1,13 @@
 /** Static portfolio content (no GraphQL) — replace or wire to CMS later. */
 
+export const STATIC_SITE_NAME = 'John Developer'
+
 export const STATIC_HERO = {
-  name: 'Alex Morgan',
+  name: 'John Developer',
+  badge: 'Available for Work',
+  headlinePrefix: "Hello, I'm",
   subtitle:
-    'Senior Software Engineer building reliable, scalable web products with modern stacks and pragmatic automation.'
+    'Senior Software Engineer crafting digital experiences with 5+ years of expertise. Specializing in full-stack development, DevOps practices, and scalable solutions that drive business growth.'
 }
 
 export const STATIC_SKILL_GROUPS = [

@@ -4,7 +4,10 @@ import TagChip from '../ui/TagChip'
 
 export default function SkillsSection({ skillGroups }) {
   return (
-    <SectionCard className="!border-[color:var(--border-default)] !bg-[color:var(--bg-section-tint)] !shadow-none">
+    <SectionCard
+      id="skills"
+      className="!border-[color:var(--border-default)] !bg-[color:var(--bg-section-tint)] !shadow-none"
+    >
       <h2 className="text-center text-3xl font-medium text-[color:var(--text-primary)] md:text-4xl">Technical Skills</h2>
       <p className="mt-2 text-center text-sm text-[color:var(--text-muted)]">
         Comprehensive stack for production-grade web products.

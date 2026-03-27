@@ -15,7 +15,12 @@ import {
 export default function Home() {
   return (
     <div className="space-y-10">
-      <HeroSection name={STATIC_HERO.name} subtitle={STATIC_HERO.subtitle} />
+      <HeroSection
+        badge={STATIC_HERO.badge}
+        headlinePrefix={STATIC_HERO.headlinePrefix}
+        name={STATIC_HERO.name}
+        subtitle={STATIC_HERO.subtitle}
+      />
       <SkillsSection skillGroups={STATIC_SKILL_GROUPS} />
       <ExperienceSection />
       <ProjectsSection posts={STATIC_FEATURED_POSTS} />
