@@ -3,18 +3,17 @@ import HeroSection from '../components/section/HeroSection'
 import SkillsSection from '../components/section/SkillsSection'
 import ExperienceSection from '../components/section/ExperienceSection'
 import ProjectsSection from '../components/section/ProjectsSection'
-import ContactSection from '../components/section/ContactSection'
-import FooterSection from '../components/section/FooterSection'
+import BlogSection from '../components/section/BlogSection'
 import {
   STATIC_HERO,
   STATIC_SKILL_GROUPS,
-  STATIC_FEATURED_POSTS,
-  STATIC_CONTACT
+  STATIC_FEATURED_PROJECTS,
+  STATIC_FEATURED_POSTS
 } from '../data/staticContent'
 
 export default function Home() {
   return (
-    <div className="space-y-10">
+    <div>
       <HeroSection
         badge={STATIC_HERO.badge}
         headlinePrefix={STATIC_HERO.headlinePrefix}
@@ -23,9 +22,8 @@ export default function Home() {
       />
       <SkillsSection skillGroups={STATIC_SKILL_GROUPS} />
       <ExperienceSection />
-      <ProjectsSection posts={STATIC_FEATURED_POSTS} />
-      <ContactSection email={STATIC_CONTACT.email} website={STATIC_CONTACT.website} />
-      <FooterSection />
+      <ProjectsSection projects={STATIC_FEATURED_PROJECTS} />
+      <BlogSection posts={STATIC_FEATURED_POSTS} />
     </div>
   )
 }

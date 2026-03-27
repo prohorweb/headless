@@ -11,8 +11,8 @@ export default function PostDetail() {
   }
 
   return (
-    <article className="rounded-[var(--radius-xl)] bg-[color:var(--bg-surface)] p-8 shadow-[var(--shadow-card)] ring-1 ring-[color:var(--border-default)]">
-      <Link to="/" className="text-sm font-medium text-[color:var(--accent-primary)] hover:underline">
+    <article className="mx-4 my-8 p-8 sm:mx-6 lg:mx-8">
+      <Link to="/blog" className="text-sm font-medium text-[color:var(--accent-primary)] hover:underline">
         &larr; Back to posts
       </Link>
       <p className="mt-4 text-xs uppercase tracking-wider text-[color:var(--text-muted)]">

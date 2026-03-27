@@ -1,5 +1,9 @@
 @import './tokens.css';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -31,4 +35,142 @@ html, body, #root {
 
 .post-content li {
   margin: 0.35rem 0;
+}
+
+.footer-contact {
+  background: var(--bg-footer);
+  padding: 3rem 1rem;
+}
+
+.footer-contact__inner {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.footer-contact__title {
+  margin: 0;
+  text-align: center;
+  color: var(--text-primary);
+  font-size: clamp(1.875rem, 2.2vw, 2.25rem);
+  font-weight: 500;
+}
+
+.footer-contact__subtitle {
+  margin: 0.5rem 0 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.footer-contact__grid-wrap,
+.footer-contact__form-wrap {
+  max-width: 42rem;
+  margin: 2rem auto 0;
+}
+
+.footer-contact__grid {
+  display: grid;
+  gap: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.footer-contact__card {
+  border-radius: var(--radius-md);
+  background: var(--bg-muted);
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.footer-contact__label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.footer-contact__value {
+  margin-top: 0.25rem;
+  display: inline-block;
+  color: var(--text-primary);
+}
+
+a.footer-contact__value:hover {
+  color: var(--accent-primary);
+}
+
+.footer-contact__form {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--bg-muted);
+  padding: 1.25rem;
+}
+
+.footer-contact__input-label {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.footer-contact__input-label:first-child {
+  margin-top: 0;
+}
+
+.footer-contact__input {
+  margin-top: 0.25rem;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.footer-contact__input::placeholder {
+  color: var(--text-muted);
+}
+
+.footer-contact__input:focus {
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+
+.footer-contact__button {
+  margin-top: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-page) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 0 0 1px var(--border-strong) inset;
+}
+
+.footer-contact__button:hover {
+  background: var(--bg-surface) !important;
+}
+
+.footer-contact__copyright {
+  margin: 2rem 0 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+@media (min-width: 640px) {
+  .footer-contact {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .footer-contact__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-contact {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
