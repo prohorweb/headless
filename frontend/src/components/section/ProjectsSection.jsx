@@ -11,9 +11,18 @@ export default function ProjectsSection({ projects }) {
         <p className="mt-2 text-center text-sm text-[color:var(--text-muted)]">
           Selected projects with implementation details and delivery outcomes.
         </p>
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectPreviewCard key={project.id} project={project} />
+        <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className={
+                index === 2
+                  ? 'min-w-0 block md:hidden xl:block'
+                  : 'min-w-0'
+              }
+            >
+              <ProjectPreviewCard project={project} />
+            </div>
           ))}
         </div>
         <div className="mt-10 flex justify-center">
