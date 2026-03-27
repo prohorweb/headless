@@ -1,6 +1,14 @@
 import React from 'react'
 
-export default function ActionButton({ href, to, variant = 'primary', className = '', children }) {
+export default function ActionButton({
+  href,
+  to,
+  variant = 'primary',
+  className = '',
+  type = 'button',
+  disabled,
+  children
+}) {
   const baseClass = 'inline-flex rounded-[var(--radius-pill)] px-4 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--focus-ring)]'
   const variantClass = variant === 'secondary'
     ? 'border border-[color:var(--border-strong)] text-[color:var(--text-secondary)] hover:bg-[color:var(--bg-muted)]'
@@ -24,7 +32,7 @@ export default function ActionButton({ href, to, variant = 'primary', className 
   }
 
   return (
-    <button type="button" className={classes}>
+    <button type={type} className={classes} disabled={disabled}>
       {children}
     </button>
   )
