@@ -8,18 +8,20 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const { data, loading, error } = useQuery(GET_PROJECT_BY_SLUG, { variables: { slug } })
 
-  if (loading) return <p className="text-sm text-[color:var(--text-muted)]">Loading project…</p>
-  if (error) return <p className="text-sm text-red-600">{error.message}</p>
+  if (loading) return <p className="px-4 py-8 text-sm text-[color:var(--text-muted)]">Loading project…</p>
+  if (error) return <p className="px-4 py-8 text-sm text-red-400">{error.message}</p>
 
   const project = data?.project
-  if (!project) return <p className="text-sm text-[color:var(--text-muted)]">Project not found.</p>
+  if (!project) {
+    return <p className="px-4 py-8 text-sm text-[color:var(--text-muted)] sm:px-6 lg:px-8">Project not found.</p>
+  }
 
   const hero = project.featuredImage?.node?.sourceUrl
     ? proxiedMediaSrc(project.featuredImage.node.sourceUrl)
     : null
 
   return (
-    <article className="rounded-[var(--radius-xl)] bg-[color:var(--bg-surface)] p-8 shadow-[var(--shadow-card)] ring-1 ring-[color:var(--border-default)]">
+    <article className="mx-4 my-8 rounded-[var(--radius-xl)] bg-[color:var(--bg-surface)] p-8 shadow-[var(--shadow-card)] ring-1 ring-[color:var(--border-default)] sm:mx-6 lg:mx-8">
       <Link to="/projects" className="text-sm font-medium text-[color:var(--accent-primary)] hover:underline">
         &larr; Back to projects
       </Link>

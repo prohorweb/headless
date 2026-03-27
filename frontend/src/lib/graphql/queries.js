@@ -1,5 +1,24 @@
 import { gql } from '@apollo/client'
 
+export const GET_PORTFOLIO_HEADER = gql`
+  query GetPortfolioHeader {
+    portfolioSettings {
+      siteName
+    }
+  }
+`
+
+export const GET_PORTFOLIO_FOOTER = gql`
+  query GetPortfolioFooter {
+    portfolioSettings {
+      siteName
+      contactEmail
+      contactWebsite
+      contactLocation
+    }
+  }
+`
+
 export const GET_HOME_PAGE = gql`
   query GetHomePage {
     portfolioSettings {
@@ -88,7 +107,7 @@ export const GET_POSTS = gql`
 `
 
 export const GET_POST_BY_SLUG = gql`
-  query GetPostBySlug($slug: String!) {
+  query GetPostBySlug($slug: ID!) {
     post(id: $slug, idType: SLUG) {
       id
       slug
@@ -126,7 +145,7 @@ export const GET_PROJECTS = gql`
 `
 
 export const GET_PROJECT_BY_SLUG = gql`
-  query GetProjectBySlug($slug: String!) {
+  query GetProjectBySlug($slug: ID!) {
     project(id: $slug, idType: SLUG) {
       id
       slug
