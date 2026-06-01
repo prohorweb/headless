@@ -18,6 +18,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ./wordpress/mu-plugins:/var/www/html/wp-content/mu-plugins
+      - ./scripts:/opt/scripts:ro
     depends_on:
       db:
         condition: service_healthy

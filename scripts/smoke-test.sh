@@ -49,6 +49,24 @@ if [[ "${GRAPHQL_RESPONSE}" != *"\"posts\""* ]]; then
 fi
 echo "   OK"
 
+echo "2b) portfolioSettings query..."
+PORTFOLIO_RESPONSE="$(
+  curl -fsS "${GRAPHQL_URL}" \
+    -H "Content-Type: application/json" \
+    -d '{"query":"query SmokePortfolio { portfolioSettings { siteName heroName } }"}'
+)"
+if [[ "${PORTFOLIO_RESPONSE}" == *"\"errors\""* ]]; then
+  echo "GraphQL portfolioSettings errors:"
+  echo "${PORTFOLIO_RESPONSE}"
+  exit 1
+fi
+if [[ "${PORTFOLIO_RESPONSE}" != *"\"portfolioSettings\""* ]]; then
+  echo "GraphQL response missing portfolioSettings:"
+  echo "${PORTFOLIO_RESPONSE}"
+  exit 1
+fi
+echo "   OK"
+
 echo "3) Frontend HTTP availability..."
 curl -fsS "${FRONTEND_URL}" >/dev/null
 echo "   OK"

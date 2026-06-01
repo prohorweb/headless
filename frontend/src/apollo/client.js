@@ -1,8 +1,9 @@
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
 
+const graphqlUri = import.meta.env.VITE_GRAPHQL_URL || '/graphql'
+
 const httpLink = new HttpLink({
-  // use relative path so Vite proxy (dev) or same-origin (prod) is used
-  uri: '/graphql'
+  uri: graphqlUri
 })
 
 const client = new ApolloClient({

@@ -4,41 +4,49 @@ import HeroSection from '../components/section/HeroSection'
 import SkillsSection from '../components/section/SkillsSection'
 import ExperienceSection from '../components/section/ExperienceSection'
 import ProjectsSection from '../components/section/ProjectsSection'
-import ContactSection from '../components/section/ContactSection'
-import FooterSection from '../components/section/FooterSection'
-import { GET_HOME_CONTENT } from '../lib/graphql/queries'
+import BlogSection from '../components/section/BlogSection'
+import { GET_HOME_PAGE } from '../lib/graphql/queries'
+import { parseSkillTagsFromHtml } from '../lib/parseSkillHtml'
 
 export default function Home() {
-  const { data, loading, error } = useQuery(GET_HOME_CONTENT)
+  const { data, loading, error } = useQuery(GET_HOME_PAGE)
 
-  if (loading) return <p className="text-sm text-slate-500">Loading posts...</p>
-  if (error) return <p className="text-sm text-red-600">Error: {error.message}</p>
+  if (loading) {
+    return <p className="px-4 py-12 text-sm text-[color:var(--text-muted)]">Loading…</p>
+  }
+  if (error) {
+    return <p className="px-4 py-12 text-sm text-red-400">Error: {error.message}</p>
+  }
 
-  const posts = data?.posts?.nodes || []
-  const categories = data?.categories?.nodes || []
+  const ps = data?.portfolioSettings
   const general = data?.generalSettings || {}
-  const featuredPosts = posts.slice(0, 3)
+  const skillNodes = data?.skillGroups?.nodes || []
+  const skillGroups = skillNodes.map((node) => ({
+    title: node.title || '',
+    tags: parseSkillTagsFromHtml(node.content || '')
+  }))
+  const projects = data?.projects?.nodes || []
+  const posts = data?.posts?.nodes || []
 
-  const skillGroups = [
-    { title: 'CMS Topics', tags: categories.slice(0, 4).map((item) => item.name).concat(['WordPress']).slice(0, 4) },
-    { title: 'Frontend', tags: ['React', 'Vite', 'Tailwind', 'Apollo'] },
-    { title: 'Backend', tags: ['WordPress', 'WPGraphQL', 'REST API', 'Headless CMS'] },
-    { title: 'DevOps', tags: ['Docker', 'CI/CD', 'Automation', 'Linux'] },
-    { title: 'Architecture', tags: ['System Design', 'Code Review', 'Scalability', 'Performance'] },
-    { title: 'Testing', tags: ['Smoke Tests', 'Linting', 'Monitoring', 'Pre-PR Gates'] }
-  ]
+  const siteName = ps?.siteName || general.title || 'Portfolio'
+  const heroName = ps?.heroName || siteName
+  const heroSubtitle = ps?.heroSubtitle || general.description || ''
 
   return (
-    <div className="space-y-6">
+    <div>
       <HeroSection
-        name={general.title || 'John Developer'}
-        subtitle={general.description || 'Senior Software Engineer crafting reliable products with headless architecture.'}
+        badge={ps?.heroBadge}
+        headlinePrefix={ps?.heroHeadlinePrefix}
+        name={heroName}
+        subtitle={heroSubtitle}
+        imageUrl={ps?.heroImageUrl}
+        imageAlt={ps?.heroImageAlt}
+        contactEmail={ps?.contactEmail}
       />
       <SkillsSection skillGroups={skillGroups} />
-      <ExperienceSection />
-      <ProjectsSection posts={featuredPosts} />
-      <ContactSection email={general.email || 'admin@example.com'} website={general.url || 'http://localhost:8080'} />
-      <FooterSection />
+      <ExperienceSection items={ps?.experienceItems || []} />
+      <ProjectsSection projects={projects} />
+      <BlogSection posts={posts} />
     </div>
   )
 }
